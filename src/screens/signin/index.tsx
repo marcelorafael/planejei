@@ -1,14 +1,14 @@
 import colors from "@/src/constants/colors";
 import { Link } from "expo-router";
 import {
-    Image,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View
+  Image,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
 } from "react-native";
 
 
@@ -55,7 +55,7 @@ export function SignInScreen() {
         </TouchableOpacity>
 
         <Link
-          href="/(auth)/signup/page"
+          href="/(auth)/signin/page"
           style={styles.link}
         >
           Ainda não possui uma conta? Cadastre-se

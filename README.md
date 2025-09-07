@@ -1,6 +1,6 @@
 # Planejei
 
-<img src="https://github.com/marcelorafael/fullWeather/blob/master/Full-Weather.gif" width="300" height="600" />
+<img src="https://github.com/marcelorafael/planejei/blob/develop/src/assets/login.png" width="300" height="600" />
 
 
 ## Aplicativo de planejamento de viajens
