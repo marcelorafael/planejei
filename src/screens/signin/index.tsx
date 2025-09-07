@@ -55,7 +55,7 @@ export function SignInScreen() {
         </TouchableOpacity>
 
         <Link
-          href="/(auth)/signin/page"
+          href="/(auth)/signup/page"
           style={styles.link}
         >
           Ainda não possui uma conta? Cadastre-se
