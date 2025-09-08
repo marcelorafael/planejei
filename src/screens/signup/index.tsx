@@ -14,6 +14,8 @@ import {
   View
 } from "react-native";
 
+import { Controller } from "react-hook-form";
+
 interface SignUpScreenProps {
   control: Control<SignUpFormData>;
   handleSubmit: UseFormHandleSubmit<SignUpFormData>;
@@ -47,37 +49,90 @@ export function SignUpScreen({
         />
 
 
-        <View>
-          <TextInput
-            style={styles.input}
-            placeholder="Nome completo..."
-            autoCapitalize="none"
-            placeholderTextColor={colors.gray50}
-          />
-        </View>
 
-        <View>
-          <TextInput
-            style={styles.input}
-            placeholder="Digite seu email..."
-            autoCapitalize="none"
-            placeholderTextColor={colors.gray50}
-          />
-        </View>
+        <Controller
+          control={control}
+          name="username"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <View>
+              <TextInput
+                style={styles.input}
+                placeholder="Nome completo..."
+                autoCapitalize="none"
+                placeholderTextColor={colors.gray50}
+                value={value}
+                onBlur={onBlur}
+                onChangeText={onChange}
+              />
+              {errors.username && <Text style={styles.errorText}>{errors.username?.message}</Text>}
+            </View>
+          )}
+        />
 
-        <View>
-          <TextInput
-            style={styles.input}
-            placeholder="********"
-            autoCapitalize="none"
-            secureTextEntry={true}
-            placeholderTextColor={colors.gray50}
-          />
-        </View>
+
+        <Controller
+          control={control}
+          name="email"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <View>
+              <TextInput
+                style={styles.input}
+                placeholder="Digite seu email..."
+                autoCapitalize="none"
+                placeholderTextColor={colors.gray50}
+                value={value}
+                onBlur={onBlur}
+                onChangeText={onChange}
+              />
+              {errors.email && <Text style={styles.errorText}>{errors.email?.message}</Text>}
+            </View>
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="password"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <View>
+              <TextInput
+                style={styles.input}
+                placeholder="********"
+                autoCapitalize="none"
+                secureTextEntry={true}
+                placeholderTextColor={colors.gray50}
+                value={value}
+                onBlur={onBlur}
+                onChangeText={onChange}
+              />
+              {errors.password && <Text style={styles.errorText}>{errors.password?.message}</Text>}
+            </View>
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="confirmPassword"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <View>
+              <TextInput
+                style={styles.input}
+                placeholder="Digite novamente su senha"
+                autoCapitalize="none"
+                secureTextEntry={true}
+                placeholderTextColor={colors.gray50}
+                value={value}
+                onBlur={onBlur}
+                onChangeText={onChange}
+              />
+              {errors.confirmPassword && <Text style={styles.errorText}>{errors.confirmPassword?.message}</Text>}
+            </View>
+          )}
+        />
 
 
         <TouchableOpacity
           style={styles.button}
+          onPress={handleSubmit(onSubmit)}
         >
           <Text style={styles.buttonText}>Criar conta</Text>
         </TouchableOpacity>
@@ -133,5 +188,9 @@ const styles = StyleSheet.create({
     color: colors.white,
     marginTop: 16,
     textAlign: 'center'
+  },
+  errorText: {
+    color: colors.red,
+    marginBottom: 8,
   }
 })
