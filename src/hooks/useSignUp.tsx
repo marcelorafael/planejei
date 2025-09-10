@@ -37,7 +37,7 @@ const useSignUp = () => {
             await authServices.signUp(data.email, data.password, "username");
             router.replace('/(panel)/home/page');
         } catch (error) {
-            console.log("Falha ao cirar conta", error);
+            console.log("Falha ao criar conta", error);
         }
     };
 
