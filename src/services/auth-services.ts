@@ -22,7 +22,7 @@ export const authServices = {
             password,
             // options: {
             //     data: {
-            //         username
+            //         name: username
             //     }
             // }
         })

@@ -133,7 +133,7 @@ export function SignUpScreen({
         <TouchableOpacity
           style={styles.button}
           onPress={handleSubmit(onSubmit)}
-          disabled={!isValid || isSubmitting}
+          disabled={isSubmitting}
         >
           <Text style={styles.buttonText}>
             {isSubmitting ? 'Carregando...' :'Criar conta'}
