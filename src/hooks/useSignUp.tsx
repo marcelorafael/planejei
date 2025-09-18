@@ -34,7 +34,7 @@ const useSignUp = () => {
 
     const onSubmit = async (data: SignUpFormData) => {
         try {
-            await authServices.signUp(data.email, data.password, "username");
+            await authServices.signUp(data.email, data.password, data.username);
             router.replace('/(panel)/home/page');
         } catch (error) {
             console.log("Falha ao criar conta", error);
