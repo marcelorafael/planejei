@@ -20,11 +20,11 @@ export const authServices = {
         const { data, error } = await supabase.auth.signUp({
             email,
             password,
-            // options: {
-            //     data: {
-            //         name: username
-            //     }
-            // }
+            options: {
+                data: {
+                    name: username
+                }
+            }
         })
 
         if (error) {
