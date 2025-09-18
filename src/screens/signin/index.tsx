@@ -1,5 +1,7 @@
 import colors from "@/src/constants/colors";
+import { SignInFormData } from "@/src/hooks/useSignIn";
 import { Link } from "expo-router";
+import { Control, Controller, FieldErrors, UseFormHandleSubmit } from "react-hook-form";
 import {
   Image,
   ScrollView,
@@ -11,8 +13,24 @@ import {
   View
 } from "react-native";
 
+interface SignInScreenProps {
+  control: Control<SignInFormData>;
+  errors: FieldErrors<SignInFormData>;
+  handleSubmit: UseFormHandleSubmit<SignInFormData>;
+  isSubmitting: boolean;
+  isValid: boolean;
+  onSubmit: (data: SignInFormData) => Promise<void>;
+}
 
-export function SignInScreen() {
+
+export function SignInScreen({
+  control,
+  errors,
+  handleSubmit,
+  isSubmitting,
+  isValid,
+  onSubmit
+}: SignInScreenProps) {
   return (
     <ScrollView
       style={{ backgroundColor: colors.zinc }}
@@ -27,31 +45,51 @@ export function SignInScreen() {
           style={styles.logo}
         />
 
+        <Controller
+          control={control}
+          name="email"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              style={styles.input}
+              placeholder="Digite seu email"
+              autoCapitalize="none"
+              keyboardType="email-address"
+              placeholderTextColor={colors.gray50}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+        />
+        {errors.email && <Text style={{ color: 'red', marginBottom: 8 }}>{errors.email.message}</Text>}
 
-        <View>
-          <TextInput
-            style={styles.input}
-            placeholder="Digite seu email..."
-            autoCapitalize="none"
-            placeholderTextColor={colors.gray50}
-          />
-        </View>
-
-        <View>
-          <TextInput
-            style={styles.input}
-            placeholder="********"
-            autoCapitalize="none"
-            secureTextEntry={true}
-            placeholderTextColor={colors.gray50}
-          />
-        </View>
+        <Controller
+          control={control}
+          name="password"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              style={styles.input}
+              placeholder="********"
+              autoCapitalize="none"
+              secureTextEntry={true}
+              placeholderTextColor={colors.gray50}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+        />
+        {errors.password && <Text style={{ color: 'red', marginBottom: 8 }}>{errors.password.message}</Text>}
 
 
         <TouchableOpacity
           style={styles.button}
+          onPress={handleSubmit(onSubmit)}
+          disabled={isSubmitting}
         >
-          <Text style={styles.buttonText}>Acessar conta</Text>
+          <Text style={styles.buttonText}>
+            { isSubmitting ? 'Carregando...' : 'Acessar conta' }
+          </Text>
         </TouchableOpacity>
 
         <Link
@@ -105,5 +143,9 @@ const styles = StyleSheet.create({
     color: colors.white,
     marginTop: 16,
     textAlign: 'center'
-  }
+  },
+  errorText: {
+    color: colors.red,
+    marginBottom: 8,
+  },
 })
