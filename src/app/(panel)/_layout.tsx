@@ -1,49 +1,21 @@
-import { Stack, router } from "expo-router";
-import { useEffect } from "react";
-import { supabase } from "../config/supabase";
+import { Stack } from "expo-router";
 
-type sessionSupabase = import('@supabase/supabase-js').Session | null;
-
-
-export default function RootLayout() {
-
-  useEffect(() => {
-    const signed = false;
-
-    requestAnimationFrame(() => {
-      supabase.auth.onAuthStateChange((_event: string, session: sessionSupabase) => {
-        if (session) {
-          console.log("User is signed in");
-          router.replace("/(panel)/home/page");
-          return
-        }
-        console.log("Não logado");
-        router.replace("/(auth)/signin/page");
-      });
-    });
-  }, []);
-
+export default function PanelLayout() {
   return (
     <Stack>
       <Stack.Screen
-        name="index"
-        options={{
-          headerShown: false
-        }}
+        name="home/page"
+        options={{ headerShown: false }}
       />
 
       <Stack.Screen
-        name="(auth)"
-        options={{
-          headerShown: false
-        }}
+        name="profile/page"
+        options={{ headerShown: false }}
       />
 
       <Stack.Screen
-        name="(panel)"
-        options={{
-          headerShown: false
-        }}
+        name="travel/new/page"
+        options={{ headerShown: false }}
       />
     </Stack>
   )

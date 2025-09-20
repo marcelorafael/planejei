@@ -14,7 +14,7 @@ export function HomeScreen() {
 
           <View style={styles.contentLinks}>
             <Link
-              href="/(panel)/home/page"
+              href="/(panel)/profile/page"
               style={styles.buttonAdd}
             >
               <Feather name="home" size={30} color={colors.white} />
