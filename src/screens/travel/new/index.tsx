@@ -1,9 +1,25 @@
 import colors from "@/src/constants/colors";
+import { TravelFormData } from "@/src/hooks/useCreateTravel";
 import { Feather } from '@expo/vector-icons';
 import { Link } from "expo-router";
+import { Control, FieldErrors, UseFormHandleSubmit } from "react-hook-form";
 import { Platform, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 
-export function NewTravelScreen() {
+interface NewTravelScreenProps {
+  control?: Control<TravelFormData>
+  handleSubmit?: UseFormHandleSubmit<TravelFormData>
+  errors?: FieldErrors<TravelFormData>
+  isSubmitting?: boolean
+  createNewTravel?: (data: TravelFormData) => Promise<void>
+}
+
+export function NewTravelScreen({
+  control,
+  handleSubmit,
+  errors,
+  isSubmitting,
+  createNewTravel
+}: NewTravelScreenProps) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView style={styles.container}>
