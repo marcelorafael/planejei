@@ -5,10 +5,18 @@ export default function PanelLayout() {
     <Stack>
       <Stack.Screen
         name="home/page"
-        options={{
-          headerShown: false,
-        }}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="profile/page"
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="travel/new/page"
+        options={{ headerShown: false }}
       />
     </Stack>
-  );
+  )
 }
